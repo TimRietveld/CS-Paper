@@ -258,12 +258,14 @@ def clustering(dismatrix, threshold, data):
 def Performance(data, r, b, threshold, measure):
     
     #First transform/clean imput "data"
-    cleandata = clean_transform(data)[0]
-    all_words = clean_transform(data)[1]
+    x = clean_transform(data)
+    cleandata = x[0]
+    all_words = x[1]
     
     #Use results + imputs "r,b" to define binary- and bandmatrix
-    bandmat = sig_band_mat(cleandata, all_words, r, b)[1]
-    binmat = sig_band_mat(cleandata, all_words, r, b)[2]
+    y = sig_band_mat(cleandata, all_words, r, b)
+    bandmat = y[1]
+    binmat = y[2]
     
     #Use the signature- and bandmatrix to make the candidate matrix
     candidate = candidate_matrix(cleandata, bandmat,r,b)
